@@ -75,12 +75,6 @@ Edit the pom.xml file and add this element under `<dependencies>`:
 </dependency>
 ```
 
-## Build
-
-In IntelliJ, just Build > Build Project
-
-In Terminal, `mvn compile`
-
 ## App.java
 
 The Maven archetype creates simple public class `App` with a public `main()` method. So I just used that.
@@ -94,4 +88,19 @@ As you can probably tell, `produce` creates a Kafka Producer object and uses it 
 
 And, `consume` creates a Kafka Consumer object and uses it to read those simple messages from the broker.
 
- 
+## Build
+
+In IntelliJ, just Build > Build Project
+
+In Terminal, `mvn clean compile`
+
+## Package
+
+In Terminal, `mvn clean package`
+
+## Run the jar
+
+```
+java -cp target/hello-kafka-1.0-SNAPSHOT-jar-with-dependencies.jar com.sternb0t.App
+```
+

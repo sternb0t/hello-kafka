@@ -1,4 +1,4 @@
-package com.jeffsternberg;
+package com.sternb0t;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

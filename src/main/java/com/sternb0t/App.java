@@ -1,4 +1,4 @@
-package com.jeffsternberg;
+package com.sternb0t;
 
 import org.apache.kafka.clients.consumer.CommitFailedException;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
