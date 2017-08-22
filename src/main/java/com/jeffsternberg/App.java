@@ -29,7 +29,6 @@ public class App
 
     private static void produce() {
         Properties kafkaProps = new Properties();
-
         kafkaProps.put("bootstrap.servers", "localhost:9092");
         kafkaProps.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
         kafkaProps.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
@@ -39,7 +38,7 @@ public class App
         System.out.println( "Kafka producer instantiated." );
 
         for (int i = 0; i < 100; i++)
-            producer.send(new ProducerRecord<String, String>("test", Integer.toString(i), "Hello Kafka" + Integer.toString(i)));
+            producer.send(new ProducerRecord<String, String>("test", Integer.toString(i), "Hello Kafka " + Integer.toString(i)));
 
         System.out.println( "Sent some data to the producer." );
 
@@ -59,24 +58,28 @@ public class App
 
         System.out.println( "Consumer subscribed to the test topic." );
 
+        int counter = 0;
+
         while (true) {
             ConsumerRecords<String, String> records = consumer.poll(100);
 
-            System.out.printf("got %d records\n", records.count());
+            System.out.printf("Loop %d got %d records.\n", counter, records.count());
 
-            if (records.isEmpty()) {
+            if (records.isEmpty() && counter >= 10) {
                 break;
             }
 
             for (ConsumerRecord<String, String> record : records) {
-                System.out.printf("topic = %s, partition = %s, offset = %d, key = %s, value = %s\n",
+                System.out.printf("Record: topic = %s, partition = %s, offset = %d, key = %s, value = %s.\n",
                         record.topic(), record.partition(), record.offset(), record.key(), record.value());
             }
             try {
                 consumer.commitSync();
             } catch (CommitFailedException e) {
-                System.out.println("commit failed" + e);
+                System.out.println("Commit failed" + e);
             }
+
+            counter++;
         }
     }
 }
