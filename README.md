@@ -1,6 +1,6 @@
 # hello kafka
 
-This is a simple console app to show producing and consuming a kafka broker. Below are the steps I took to get it running on my machine, a MacBook Pro running macOS sierra 10.12.6.
+This is a simple console app to demonstrate producing and consuming an [Apache Kafka](https://kafka.apache.org/) broker. Below are the steps I took to get it running on my machine, a MacBook Pro running macOS sierra 10.12.6.
 
 ## Verify Java
 
